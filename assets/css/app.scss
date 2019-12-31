@@ -1,0 +1,21 @@
+// customize some Bootstrap variables
+$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+
+$theme-colors: (
+        "navbar": #245682,
+        "button": #17a2b8,
+        "button_dropdown" : #17a2b8,
+);
+
+@import "~bootstrap/scss/bootstrap";
+.navbar-nav{
+    width: 100%;
+    justify-content: space-around;
+    font-family: Arial, serif;
+}
+.navbar{
+    padding: 0 0;
+}
+
