@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">{{ slug }}</h1>
+    <div class="row">
+        <div class="col-12 text-center">
+            <img src="{{ program.poster }}" alt="">
+            <p >Résumé: {{ program.summary }}</p>
+            <ul class="text-center mt-4">
+                {% for season in seasons %}
+                    <li><a class="" href="{{ path('showAllSeason', {"id":season.id}) }}">season {{ season.number }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <a href="{{ path('wild_index') }}">
+        Retour à l'accueil
+    </a>
+
+{% endblock %}

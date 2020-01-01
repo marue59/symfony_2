@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-6">
+            <img src="{{ program.poster }}" alt="">
+        </div>
+        <div class="col-3 text-center">
+            <h1>{{ program.title }}</h1>
+            <h2>saison {{ season.number }}</h2>
+            {% for episode in episodes %}
+                <p>{{ episode.title }}</p>
+            {% endfor   %}
+        </div>
+        <div class="col-3">
+            <a href="">Retour</a>
+        </div>
+    </div>
+{% endblock %}
