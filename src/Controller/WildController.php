@@ -119,17 +119,14 @@ Class WildController extends AbstractController
             '/-/',
             ' ', ucwords(trim(strip_tags($slug)), "-")
         );
-
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findOneBy(['title' => mb_strtolower($slug)]);
-
         if (!$program) {
             throw $this->createNotFoundException(
                 'No program with ' . $slug . ' title, found in program\'s table.'
             );
         }
-
         $id_program = $program->getId();
         $season = $this->getDoctrine()
             ->getRepository(Season::class)
@@ -139,8 +136,6 @@ Class WildController extends AbstractController
             '/ /',
             '-', strtolower($slug)
         );
-
-
         return $this->render('wild/program.html.twig', [
             'program' => $program,
             'slug' => $title,
@@ -161,52 +156,43 @@ Class WildController extends AbstractController
         $season = $this->getDoctrine()
             ->getRepository(Season::class)
             ->findOneBy(['id' => $id]);
+
+
         if (!$season) {
             throw $this->createNotFoundException(
                 'No season with id = ' . $id . ', found.'
             );
         }
+
         $program = $season->getProgram();
         $episodes = $season->getEpisodes();
-
-
 
         return $this->render('wild/season.html.twig', [
             'season' => $season,
             'episodes' => $episodes,
             'program' => $program,
+            'id' =>$id,
         ]);
     }
 
     /**
      *
-     * @param string|null $id
+     * @param Episode $episode
      * @return Response
-     * @Route("wild/episode/{id}", name="episode")
+     * @Route("/episode/{id}", name="show_episode")
      */
-    public function showEpisode(?string $id):Response
+    public function showEpisode(Episode $episode):Response
     {
-        if (!$id) {
-            throw $this
-                ->createNotFoundException('No slug has been sent to find an episode.');
-        }
-
-        $episode = $this->getDoctrine()
-            ->getManager()
-            ->getRepository(Episode::class)
-            ->findOneBy(['id' => $id]);
-
-        if (!$episode) {
-            throw $this->createNotFoundException(
-                'No episode with id = '.$id.', found.'
-            );
-        }
+        $season = $episode->getSeason();
+        $program = $season->getProgram();
+        $slug = $program ->getTitle();
+        $slug = strtolower(str_replace(' ', '-',$slug));
 
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
+            'program' =>$program,
+            'season' =>$season,
+            'slug'=>$slug
         ]);
     }
 }
-
-
-
