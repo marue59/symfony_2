@@ -88,7 +88,7 @@ Class WildController extends AbstractController
      *
      * @param string $categoryName
      * @return Response
-     * @Route("/wild/category/{categoryName}", name="show_category")
+     * @Route("/show/category/{categoryName}", name="show_category")
      */
     public function showByCategory(string $categoryName)
     {
