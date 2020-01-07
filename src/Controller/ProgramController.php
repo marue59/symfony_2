@@ -24,6 +24,7 @@ class ProgramController extends AbstractController
     {
         return $this->render('program/index.html.twig', [
             'programs' => $programRepository->findAll(),
+            'program' => $programRepository ->findAll()
         ]);
     }
 

@@ -172,6 +172,7 @@ class Program
     {
         return $this->episodes;
     }
+
     public function addEpisode(Episode $episode): self
     {
         if (!$this->episodes->contains($episode)) {
@@ -180,6 +181,7 @@ class Program
         }
         return $this;
     }
+
     public function removeEpisode(Episode $episode): self
     {
         if ($this->episodes->contains($episode)) {
@@ -191,6 +193,7 @@ class Program
         }
         return $this;
     }
+
     /**
      * @return Collection|Season[]
      */
