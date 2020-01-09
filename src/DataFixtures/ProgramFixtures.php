@@ -69,13 +69,12 @@ class ProgramFixtures
             $program = new Program();
             $program->setTitle($title);
             $program->setSummary($data['summary']);
+            $program->setCategory($this->getReference('category_0'));
             $manager->persist($program);
-            $this->addReference('program_' .$i, $program);
+            $this->addReference('category' . $i, $program);
             $i++;
         }
             $manager->flush();
-
-        // categorie_0 fait référence à la première catégorie générée.
     }
 
 }
